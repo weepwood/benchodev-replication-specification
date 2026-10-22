@@ -34,3 +34,6 @@ next-env.d.ts
 # cache
 .eslintcache
 *.tsbuildinfo
+
+# netlify
+.netlify/
