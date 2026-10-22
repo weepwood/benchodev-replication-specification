@@ -1,0 +1,385 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: light dark;
+  --bg: #ffffff;
+  --surface: #f7f7f6;
+  --surface-2: #f1f1f0;
+  --surface-3: #ecebe7;
+  --board: #ffffff;
+  --canvas-bg: #f7f7f6;
+  --ink: #17181a;
+  --ink-2: #3c3b37;
+  --ink-3: #5c5b56;
+  --ink-4: #6f6e68;
+  --ink-5: #85847e;
+  --lock: #adaca6;
+  --solid: #0e0f11;
+  --solid-ink: #f4f3f1;
+  --pick: #0d99ff;
+  --guide: #ff3b6b;
+  --paper: #dcd9cf;
+  --paper-2: #e9e7df;
+  --rule: #17181a1f;
+  --rule-strong: #17181a36;
+  --signal: #2231dd;
+  --ember: #b8431c;
+  --ok: #15803d;
+
+  /* Playful block accents */
+  --acc-red: #e5484d;
+  --acc-green: #1f9d55;
+  --acc-amber: #e09a12;
+  --acc-blue: #4c8dff;
+  --acc-sky: #5b8def;
+  --acc-yellow: #f2c46d;
+  --acc-pink: #e57bb8;
+  --acc-purple: #9d7bf5;
+  --acc-mint: #74dcae;
+  --acc-fog: #9ab8db;
+
+  /* Precision glass & bevel specular highlights */
+  --glass-a: 0.35;
+  --glass-edge-a: 0.4;
+  --edge-hi: 0.75;
+  --edge-lo: 0.18;
+  --edge-far: 0.42;
+  --slab-dark: #0e0f11;
+  --spec-max: 0.35;
+  --ring-max: 0.4;
+  --lift-max: 0.06;
+
+  --card-top-spec: rgba(255, 255, 255, 0.85);
+  --card-shadow: 0 1px 2px rgba(23, 24, 26, 0.04), 0 8px 24px -12px rgba(23, 24, 26, 0.07);
+  --card-shadow-hover: 0 2px 4px rgba(23, 24, 26, 0.06), 0 16px 34px -14px rgba(23, 24, 26, 0.12);
+  --nav-glass: rgba(247, 247, 246, 0.82);
+
+  /* Typography */
+  --font-head: "Google Sans", "Instrument Sans", "Inter", var(--font-ui);
+  --font-ui: "Inter", "Maison Neue", "MaisonNeue-Book", "Instrument Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-code: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0c0d0f;
+    --surface: #131417;
+    --surface-2: #191b1f;
+    --surface-3: #212328;
+    --board: #15171b;
+    --canvas-bg: #111215;
+    --ink: #f3f2ee;
+    --ink-2: #d6d4cd;
+    --ink-3: #a7a59e;
+    --ink-4: #87857e;
+    --ink-5: #686660;
+    --lock: #52514c;
+    --solid: #f4f3f1;
+    --solid-ink: #0e0f11;
+    --pick: #2ca6ff;
+    --guide: #ff4d79;
+    --paper: #1e2025;
+    --paper-2: #181a1e;
+    --rule: #ffffff1a;
+    --rule-strong: #ffffff2e;
+    --signal: #6875ff;
+    --ember: #ef6c41;
+    --ok: #22c55e;
+    --card-top-spec: rgba(255, 255, 255, 0.09);
+    --card-shadow: 0 1px 2px rgba(0, 0, 0, 0.45), 0 10px 28px -12px rgba(0, 0, 0, 0.6);
+    --card-shadow-hover: 0 2px 6px rgba(0, 0, 0, 0.6), 0 18px 38px -12px rgba(0, 0, 0, 0.75);
+    --nav-glass: rgba(19, 20, 23, 0.82);
+  }
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #0c0d0f;
+  --surface: #131417;
+  --surface-2: #191b1f;
+  --surface-3: #212328;
+  --board: #15171b;
+  --canvas-bg: #111215;
+  --ink: #f3f2ee;
+  --ink-2: #d6d4cd;
+  --ink-3: #a7a59e;
+  --ink-4: #87857e;
+  --ink-5: #686660;
+  --lock: #52514c;
+  --solid: #f4f3f1;
+  --solid-ink: #0e0f11;
+  --pick: #2ca6ff;
+  --guide: #ff4d79;
+  --paper: #1e2025;
+  --paper-2: #181a1e;
+  --rule: #ffffff1a;
+  --rule-strong: #ffffff2e;
+  --signal: #6875ff;
+  --ember: #ef6c41;
+  --ok: #22c55e;
+  --card-top-spec: rgba(255, 255, 255, 0.09);
+  --card-shadow: 0 1px 2px rgba(0, 0, 0, 0.45), 0 10px 28px -12px rgba(0, 0, 0, 0.6);
+  --card-shadow-hover: 0 2px 6px rgba(0, 0, 0, 0.6), 0 18px 38px -12px rgba(0, 0, 0, 0.75);
+  --nav-glass: rgba(19, 20, 23, 0.82);
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--surface);
+  color: var(--ink);
+  font-family: var(--font-ui);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Layer 3 of pinch-zoom defense: pan-x pan-y only */
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--surface);
+  color: var(--ink);
+  font-family: var(--font-ui);
+  touch-action: pan-x pan-y;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: rgba(13, 153, 255, 0.22);
+  color: var(--ink);
+}
+
+/* Precision Header Navigation */
+.bnc-header {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  backdrop-filter: blur(16px) saturate(1.4);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  background: var(--nav-glass);
+  border-bottom: 1px solid var(--rule);
+}
+
+.bnc-container {
+  width: 100%;
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+@media (max-width: 640px) {
+  .bnc-container {
+    padding: 0 16px;
+  }
+}
+
+.bnc-heading {
+  font-family: var(--font-head);
+  letter-spacing: -0.032em;
+  color: var(--ink);
+}
+
+.bnc-mono {
+  font-family: var(--font-code);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Precision Instrument Card */
+.bnc-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: var(--board);
+  border: 1px solid var(--rule);
+  border-radius: 18px;
+  box-shadow: var(--card-shadow), inset 0 1px 0 0 var(--card-top-spec);
+  transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 220ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 180ms ease;
+  overflow: hidden;
+}
+
+.bnc-card:hover {
+  border-color: var(--rule-strong);
+  box-shadow: var(--card-shadow-hover), inset 0 1px 0 0 var(--card-top-spec);
+}
+
+/* Warm Paper Inset Stage inside each Block Card */
+.bnc-stage {
+  position: relative;
+  height: 256px;
+  margin: 8px 8px 0 8px;
+  border-radius: 12px;
+  background: var(--paper-2);
+  border: 1px solid var(--rule);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.03);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  user-select: none;
+}
+
+.bnc-stage-dots {
+  background-image: radial-gradient(var(--rule-strong) 1px, transparent 1px);
+  background-size: 16px 16px;
+}
+
+.bnc-stage-blueprint {
+  background-color: var(--paper-2);
+  background-image:
+    linear-gradient(to right, rgba(13, 153, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(13, 153, 255, 0.08) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Filter Chips */
+.bnc-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  height: 36px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1px solid var(--rule);
+  background: var(--board);
+  color: var(--ink-3);
+  font-size: 13.5px;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: inset 0 1px 0 var(--card-top-spec);
+  transition: all 160ms ease;
+}
+
+.bnc-chip:hover {
+  color: var(--ink);
+  border-color: var(--rule-strong);
+  background: var(--surface-2);
+}
+
+.bnc-chip[data-active="true"] {
+  background: var(--solid);
+  color: var(--solid-ink);
+  border-color: var(--solid);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.14);
+}
+
+/* Buttons */
+.bnc-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 36px;
+  padding: 0 14px;
+  border-radius: 10px;
+  border: 1px solid var(--rule);
+  background: var(--board);
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: inset 0 1px 0 var(--card-top-spec);
+  transition: all 150ms ease;
+  text-decoration: none;
+}
+
+.bnc-btn:hover {
+  background: var(--surface-2);
+  border-color: var(--rule-strong);
+}
+
+.bnc-btn:active {
+  transform: scale(0.98);
+}
+
+.bnc-btn-primary {
+  background: var(--solid);
+  color: var(--solid-ink);
+  border-color: var(--solid);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.16);
+}
+
+.bnc-btn-primary:hover {
+  opacity: 0.92;
+  background: var(--solid);
+}
+
+.bnc-btn-pick {
+  background: var(--pick);
+  color: #ffffff;
+  border-color: var(--pick);
+  box-shadow: 0 2px 10px rgba(13, 153, 255, 0.28);
+}
+
+.bnc-btn-pick:hover {
+  filter: brightness(1.06);
+  background: var(--pick);
+}
+
+/* Holographic Sponsor Card (Mobbin style) */
+.bnc-holo-card {
+  position: relative;
+  background: linear-gradient(135deg, #101216 0%, #191d26 50%, #0e1015 100%);
+  color: #f4f3f1;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  overflow: hidden;
+}
+
+.bnc-holo-foil {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  background: conic-gradient(
+    from 180deg at 50% 50%,
+    rgba(13, 153, 255, 0.22),
+    rgba(255, 59, 107, 0.22),
+    rgba(242, 196, 109, 0.2),
+    rgba(116, 220, 174, 0.22),
+    rgba(157, 123, 245, 0.24),
+    rgba(13, 153, 255, 0.22)
+  );
+  mix-blend-mode: screen;
+  opacity: 0.65;
+  filter: blur(22px);
+}
+
+/* Focus Ring in Figma Selection Blue */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--pick);
+  outline-offset: 2px;
+}
+
+/* Custom Shimmer Keyframes */
+@keyframes bnc-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.bnc-shimmer-bar {
+  background: linear-gradient(
+    90deg,
+    var(--surface-3) 20%,
+    var(--board) 50%,
+    var(--surface-3) 80%
+  );
+  background-size: 200% 100%;
+  animation: bnc-shimmer 1.8s infinite linear;
+}
